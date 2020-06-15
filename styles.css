@@ -1,0 +1,53 @@
+td {
+  width: 10px;
+}
+
+td.noborder  {
+  border: none;
+}
+
+table {
+  border-collapse:collapse;
+  font-family: Arial; 
+  font-size: 16px;
+}
+
+tr {
+  border: none;
+  padding-top: 5px;
+  height: 10px;
+}
+
+td.groupNamesHorizontal {
+  text-align: center; 
+  font-weight: bold;
+  border: 1px solid black;  
+}
+
+td.elementNamesHorizontal {
+  border: 1px solid black;  
+  vertical-align: bottom;
+  height: 100px;
+}
+
+td.groupNamesVertical {
+  text-align: center; 
+  font-weight: bold;
+  border: 1px solid black;  
+}
+
+td.elementNamesVertical {
+  border: 1px solid black;  
+  text-align: right;
+  width: 90px;
+}
+
+td.relation {
+  border: 1px solid black;  
+  text-align: center;
+}
+
+span {
+  writing-mode: vertical-lr; 
+  transform: rotate(180deg);
+}
