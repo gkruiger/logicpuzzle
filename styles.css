@@ -2,10 +2,6 @@ td {
   width: 10px;
 }
 
-td.noborder  {
-  border: none;
-}
-
 table {
   border-collapse:collapse;
   font-family: Arial; 

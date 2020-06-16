@@ -762,13 +762,15 @@ function solve() {
     }    
   }
 
-  // Process all hints, deducing includede
+  // Process all hints, deducing included
   function processHints() {
     for(hint of hints) {
       setRelation(
         hint.getRelation()
       );
 
+      // Just do it twice te be sure that the complete table is filled.
+      // Stupid, buf effective.
       checkRules();
       checkRules();
     }
