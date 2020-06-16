@@ -1,7 +1,7 @@
 # logicpuzzle
 Solves the Zebra puzzle by reasoning, further explained in by blog https://www.ontdeksels.nl/ontdeksel-30 (Dutch).
 
-![Demo screenshot](../blob/master/solution.png "Solution")
+![Demo screenshot](../master/solution.png "Solution")
 
 It's a logic puzzle in which you have to find the right combinations by reasoning.
 
@@ -10,9 +10,9 @@ You can let the application solve other logic puzzles. To make this happen, you 
 
 `
 const logicPuzzle = {
-  actors: ... 
-  attributes: ... 
-  hints: ...
+  actors: ...  
+  attributes: ...  
+  hints: ... 
 }
 `
 
