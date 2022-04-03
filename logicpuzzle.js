@@ -6,127 +6,46 @@ All input needs to solve the puzzle:
 */
 
 const logicPuzzle = {
-  actors: {
-    name: 'Nationaliteit',
-    elements: ['Brit', 'Zweed', 'Deen', 'Noor', 'Duitser']
-  },
-  attributes: [{
-    name: 'Positie',
-    elements: ['1', '2', '3', '4', '5']
-  }, {
-    name: 'Kleur',
-    elements: ['Rood', 'Groen', 'Geel', 'Wit', 'Blauw']
-  }, {
-    name: 'Drank',
-    elements: ['Thee', 'Koffie', 'Melk', 'Bier', 'Water']
-  }, {
-    name: 'Merk sigaret',
-    elements: ['Pall Mall', 'Dunhill', 'Blends', 'Blue Master', 'Prince']
-  }, {
-    name: 'Huisdier',
-    elements: ['Honden', 'Vogels', 'Katten', 'Paard', 'Vis']
-  }],
-  hints: [{
-    relation: {
-      a: 'Brit',
-      b: 'Rood',
-      bool: true
-    }
-  }, {
-    relation: {
-      a: 'Zweed',
-      b: 'Honden',
-      bool: true
-    }
-  }, {
-    relation: {
-      a: 'Deen',
-      b: 'Thee',
-      bool: true
-    }
-  }, {
-    rule: {
-      a: 'Groen',
-      type: 'leftOf',
-      c: 'Positie',
-      b: 'Wit'
-    }
-  }, {
-    relation: {
-      a: 'Groen',
-      b: 'Koffie',
-      bool: true
-    }
-  }, {
-    relation: {
-      a: 'Pall Mall',
-      b: 'Vogels',
-      bool: true
-    }
-  }, {
-    relation: {
-      a: 'Geel',
-      b: 'Dunhill',
-      bool: true
-    }
-  }, {
-    relation: {
-      a: '3',
-      b: 'Melk',
-      bool: true
-    }
-  }, {
-    relation: {
-      a: 'Noor',
-      b: '1',
-      bool: true
-    }
-    
-  }, {
-    rule: {
-      a: 'Blends',
-      type: 'nextTo',
-      c: 'Positie',
-      b: 'Katten'
-    }
-  }, {
-    rule: {
-      a: 'Paard',
-      type: 'nextTo',
-      c: 'Positie',
-      b: 'Dunhill'
-    }
-    
-  }, {
-    relation: {
-      a: 'Blue Master',
-      b: 'Bier',
-      bool: true
-    }
-  }, {
-    relation: {
-      a: 'Duitser',
-      b: 'Prince',
-      bool: true
-    }
-    
-  }, {
-    rule: {
-      a: 'Noor',
-      type: 'nextTo',
-      c: 'Positie',
-      b: 'Blauw'
-    }
-  }, {
-    rule: {
-      a: 'Blends',
-      type: 'nextTo',
-      c: 'Positie',
-      b: 'Water'
-    }
-    
-  }]
-}; 
+    actors: {
+        name: 'Nationaliteit',
+        elements: ['Leuken', 'Altweerterheide', 'Tungelroy', 'Swartbroek', 'Stramproy']
+    },
+    attributes: [{
+        name: 'Positie',
+        elements: ['1', '2', '3', '4', '5']
+    }, {
+        name: 'Caravan',
+        elements: ['Hout', 'Luxe', 'Steen', 'Kunststof', 'Roest']
+    }, {
+        name: 'Drank',
+        elements: ['Rode Wijn', 'Cognac', 'Water', 'Gin-Tonic', 'Cola']
+    }, {
+        name: 'Club',
+        elements: ['Rapiditas', 'FC Laar', 'BSW', 'HV Weert', 'RKSVV']
+    }, {
+        name: 'Woonhuis',
+        elements: ['Appartement', 'Tweekapper', 'Rijtjeshuis', 'Boerderij', 'Vrijstaand']
+    }],
+
+    hints: [
+        {relation: {a: 'Leuken', b: 'Roest', bool: true}},
+        {relation: {a: 'Altweerterheide', b: 'Appartement', bool: true}},
+        {relation: {a: 'Rapiditas', b: 'Tweekapper', bool: true}},
+        {rule: {a: 'Rijtjeshuis', type: 'nextTo', c: 'Positie', b: 'FC Laar'}},
+        {relation: {a: '1', b: 'Stramproy', bool: true}},
+        {relation: {a: 'Tungelroy', b: 'Rode Wijn', bool: true}},
+        {relation: {a: 'Cognac', b: 'BSW', bool: true}},
+        {relation: {a: '3', b: 'Water', bool: true}},
+        {relation: {a: 'Swartbroek', b: 'HV Weert', bool: true}},
+        {rule: {a: 'Hout', type: 'leftOf', c: 'Positie', b: 'Steen'}},
+        {rule: {a: 'RKSVV', type: 'nextTo', c: 'Positie', b: 'Boerderij'}},
+        {rule: {a: 'RKSVV', type: 'nextTo', c: 'Positie', b: 'Gin-Tonic'}},
+        {relation: {a: 'Hout', b: 'Cola', bool: true}},
+        {rule: {a: 'Stramproy', type: 'nextTo', c: 'Positie', b: 'Kunststof'}},
+        {relation: {a: 'Luxe', b: 'FC Laar', bool: true}},
+    ]
+};
+
 
 // An element is any single actor or attribute, like 'Noor' or 'Rood'
 class Element {
@@ -573,6 +492,10 @@ function solve() {
       // Rules
       if (hint.rule != undefined) {  
    
+        if(hint.rule.type != 'leftOf' && hint.rule.type != 'nextTo') {
+          window.alert('Illegal hint type');
+        }
+
         if(hint.rule.type == 'leftOf') {
 
           let elementsForC = getElementsByGroupName(hint.rule.c);
@@ -769,8 +692,9 @@ function solve() {
         hint.getRelation()
       );
 
-      // Just do it twice te be sure that the complete table is filled.
-      // Stupid, buf effective.
+      // Just do it three times te be sure that the complete table is filled.
+      // I'm sure there is a bug somewhere, but I don't feel like finding it...
+      checkRules();
       checkRules();
       checkRules();
     }
